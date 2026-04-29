@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Pressable,
@@ -278,10 +278,6 @@ function ResultScreen({
   recommendation: RoutineRecommendation | null;
 }) {
   const blocks = useMemo(() => [...(recommendation?.morning ?? []), ...(recommendation?.evening ?? [])], [recommendation]);
-
-  useEffect(() => {
-    if (!recommendation) return;
-  }, [recommendation]);
 
   if (!recommendation) {
     return (

@@ -78,6 +78,7 @@ export function recommendProductsForStep(
   const ranked = products
     .filter((product) => product.isActive !== false)
     .filter((product) => productMatchesStep(product, step))
+    .filter((product) => productMatchesUsageTime(product, step))
     .map((product) => scoreProduct(product, step, profile))
     .filter((candidate) => candidate.score > 0)
     .sort((a, b) => b.score - a.score);
@@ -145,15 +146,37 @@ function scoreProduct(product: Product, step: RoutineStep, profile: SkinProfile)
     reasons.push("SPF ma wysoki priorytet w tej rutynie");
   }
 
-  if (step === "morning_serum" && product.usageTime === "wieczorem") score -= 12;
-  if (step === "evening_serum" && product.usageTime === "rano") score -= 12;
-
   return { product, score, reasons, warnings };
 }
 
 function productMatchesStep(product: Product, step: RoutineStep): boolean {
   const mappedSteps = productStepMap[product.recommendedStep] ?? productStepMap[product.category] ?? [];
   return mappedSteps.includes(step);
+}
+
+function productMatchesUsageTime(product: Product, step: RoutineStep): boolean {
+  const allowedTimes = getAllowedUsageTimes(product.usageTime);
+  if (isMorningStep(step)) return allowedTimes.has("morning");
+  if (isEveningStep(step)) return allowedTimes.has("evening");
+  return true;
+}
+
+function getAllowedUsageTimes(usageTime: Product["usageTime"]): Set<"morning" | "evening"> {
+  const normalized = usageTime?.trim().toLowerCase();
+
+  if (!normalized || normalized === "rano i wieczorem") return new Set(["morning", "evening"]);
+  if (normalized === "rano") return new Set(["morning"]);
+  if (normalized === "wieczorem") return new Set(["evening"]);
+
+  return new Set(["morning", "evening"]);
+}
+
+function isMorningStep(step: RoutineStep): boolean {
+  return ["morning_serum", "morning_cream", "spf"].includes(step);
+}
+
+function isEveningStep(step: RoutineStep): boolean {
+  return ["evening_serum", "evening_cream", "exfoliation"].includes(step);
 }
 
 function scoreBudget(price: Product["pricePln"], budget: SkinProfile["budget"]): number {
