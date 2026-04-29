@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CeraMatch AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="screen intro-screen" id="introScreen">
+        <div class="topbar">
+          <div>
+            <p class="eyebrow">CeraMatch AI</p>
+            <h1>Dobierz rutynę do swojej skóry</h1>
+          </div>
+          <span class="status-pill">MVP</span>
+        </div>
+
+        <div class="intro-visual" aria-hidden="true">
+          <div class="tone tone-a"></div>
+          <div class="tone tone-b"></div>
+          <div class="tone tone-c"></div>
+          <div class="scan-card">
+            <span>ankieta</span>
+            <strong>42</strong>
+            <small>sygnały skóry</small>
+          </div>
+        </div>
+
+        <div class="intro-copy">
+          <p>
+            Odpowiedz na szczegółowe pytania o cerę, styl życia i obecną pielęgnację.
+            Aplikacja ułoży plan poranny i wieczorny oraz dobierze przykładowe kosmetyki
+            dostępne w Polsce.
+          </p>
+          <button class="primary-button" id="startButton" type="button">Rozpocznij ankietę</button>
+        </div>
+      </section>
+
+      <section class="screen quiz-screen hidden" id="quizScreen">
+        <div class="quiz-header">
+          <button class="icon-button" id="backButton" type="button" aria-label="Poprzedni krok">
+            <span aria-hidden="true">←</span>
+          </button>
+          <div class="progress-wrap">
+            <div class="progress-label">
+              <span id="stepLabel">Krok 1 z 8</span>
+              <span id="progressPercent">12%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <form id="quizForm" class="quiz-form">
+          <div id="questionHost"></div>
+          <div class="quiz-actions">
+            <button class="secondary-button" id="skipButton" type="button">Pomiń</button>
+            <button class="primary-button" id="nextButton" type="button">Dalej</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="screen result-screen hidden" id="resultScreen">
+        <div class="result-header">
+          <p class="eyebrow">Twój plan</p>
+          <h2 id="resultTitle">Rutyna pielęgnacyjna</h2>
+          <p id="resultSubtitle"></p>
+        </div>
+
+        <div class="insight-grid" id="insightGrid"></div>
+
+        <div class="tabs" role="tablist" aria-label="Widoki wyniku">
+          <button class="tab active" type="button" data-tab="routine">Rutyna</button>
+          <button class="tab" type="button" data-tab="products">Produkty</button>
+          <button class="tab" type="button" data-tab="rules">Zasady</button>
+        </div>
+
+        <div class="tab-panel" id="routinePanel"></div>
+        <div class="tab-panel hidden" id="productsPanel"></div>
+        <div class="tab-panel hidden" id="rulesPanel"></div>
+
+        <div class="result-actions">
+          <button class="secondary-button" id="editAnswersButton" type="button">Edytuj odpowiedzi</button>
+          <button class="primary-button" id="restartButton" type="button">Nowa ankieta</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
