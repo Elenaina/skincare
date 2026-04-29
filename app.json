@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "CeraMatch AI",
+    "slug": "ceramatch-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "scheme": "ceramatch",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "pl.ceramatch.app"
+    },
+    "android": {
+      "package": "pl.ceramatch.app"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "replace-after-eas-init"
+      }
+    }
+  }
+}

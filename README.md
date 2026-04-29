@@ -16,12 +16,22 @@ The long-term product direction is a React Native app with a curated Polish cosm
 
 Open `index.html` in a browser to try the static prototype.
 
-## Planned Stack
+## App Stack
 
 - React Native with Expo for the mobile app
 - Supabase/PostgreSQL for the product and recommendation database
 - Optional FastAPI service when recommendation logic becomes more advanced
 - Optional AI layer for explaining routines and future image analysis
+
+The React Native skeleton lives in `App.tsx` and `src/`. The original static prototype is still available in `index.html`, `styles.css`, and `app.js`.
+
+## Domain Logic
+
+- Survey definition: `src/domain/survey.ts`
+- Skin profile scoring: `src/domain/scoring.ts`
+- Product ranking and routine assembly: `src/domain/recommendations.ts`
+- Supabase client: `src/lib/supabase.ts`
+- Product repository with local fallback: `src/data/productRepository.ts`
 
 ## Product Database Direction
 
