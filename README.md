@@ -25,7 +25,7 @@ Open `index.html` in a browser to try the static prototype.
 
 ## Product Database Direction
 
-The first version of the database will be manually curated. Each product should store not only product details, but also why and when it should be recommended.
+The first version of the database is manually curated. The seed CSV is stored in `data/products_seed.csv`, with schema notes in `docs/product-database.md`. Each product should store not only product details, but also why and when it should be recommended.
 
 Suggested fields:
 
